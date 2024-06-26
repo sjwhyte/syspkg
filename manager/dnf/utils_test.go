@@ -1,7 +1,7 @@
 package dnf_test
 
 import (
-	"github.com/bluet/syspkg/manager/dnf"
+	"github.com/sjwhyte/syspkg/manager/dnf"
 	"testing"
 )
 

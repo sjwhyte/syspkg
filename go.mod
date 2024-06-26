@@ -1,8 +1,10 @@
-module github.com/bluet/syspkg
+module github.com/sjwhyte/syspkg
 
 go 1.22
 
 require github.com/urfave/cli/v2 v2.26.0 // direct
+
+require github.com/bluet/syspkg v0.1.4
 
 require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.3 // indirect

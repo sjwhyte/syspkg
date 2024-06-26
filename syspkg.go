@@ -19,16 +19,13 @@ package syspkg
 
 import (
 	"errors"
-	"github.com/bluet/syspkg/manager/dnf"
+	"github.com/sjwhyte/syspkg/manager/dnf"
 	"log"
 
-	"github.com/bluet/syspkg/manager"
-	"github.com/bluet/syspkg/manager/apt"
-	"github.com/bluet/syspkg/manager/flatpak"
-	"github.com/bluet/syspkg/manager/snap"
-	// "github.com/bluet/syspkg/zypper"
-	// "github.com/bluet/syspkg/dnf"
-	// "github.com/bluet/syspkg/apk"
+	"github.com/sjwhyte/syspkg/manager"
+	"github.com/sjwhyte/syspkg/manager/apt"
+	"github.com/sjwhyte/syspkg/manager/flatpak"
+	"github.com/sjwhyte/syspkg/manager/snap"
 )
 
 // PackageInfo represents a package's information.

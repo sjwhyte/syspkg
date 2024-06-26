@@ -1,7 +1,7 @@
 package dnf
 
 import (
-	"github.com/bluet/syspkg/manager"
+	"github.com/sjwhyte/syspkg/manager"
 	"log"
 	"regexp"
 	"strings"
