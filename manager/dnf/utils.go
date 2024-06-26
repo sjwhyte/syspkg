@@ -210,3 +210,45 @@ func ParsePackageInfoOutput(msg string, opts *manager.Options) manager.PackageIn
 
 	return pi
 }
+
+func ParseUpgradedPackageInfoOutput(msg string, opts *manager.Options) []manager.PackageInfo {
+	var pi []manager.PackageInfo
+	re := regexp.MustCompile(`Upgraded:\s*\n([\s\S]*?)\n\nComplete!`)
+	match := re.FindStringSubmatch(msg)
+
+	if len(match) < 2 {
+		return []manager.PackageInfo{}
+	}
+
+	packagesStr := strings.TrimSpace(match[1])
+	packages := strings.Fields(packagesStr)
+
+	for _, line := range packages {
+		// Define the regex pattern
+		pattern := `^(?P<packageName>.+)-(?P<version>\d+\.\d+\.\d+-\d+)\.(?P<architecture>.+)$`
+		re := regexp.MustCompile(pattern)
+
+		match := re.FindStringSubmatch(strings.TrimRight(strings.SplitN(line, ":", 2)[0], " "))
+		if match == nil {
+			return []manager.PackageInfo{}
+		}
+
+		// Extract the named capture groups
+		result := make(map[string]string)
+		for i, name := range re.SubexpNames() {
+			if i != 0 && name != "" {
+				result[name] = match[i]
+			}
+		}
+
+		pm := manager.PackageInfo{
+			Name:           result["packageName"],
+			Version:        result["version"],
+			NewVersion:     result["version"],
+			Arch:           result["architecture"],
+			PackageManager: pm,
+		}
+		pi = append(pi, pm)
+	}
+	return pi
+}

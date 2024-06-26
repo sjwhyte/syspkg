@@ -73,6 +73,57 @@ Description  : The gzip package contains the popular GNU gzip data compression
              : Gzip should be installed on your system, because it is a
              : very commonly used data compression program.
 `
+var upgradeOutput = `Last metadata expiration check: 0:02:47 ago on Wed 26 Jun 2024 07:37:36 PM UTC.
+Dependencies resolved.
+===================================================================================================================================================================================================================================================================================================================================================================================================
+ Package                                                                                          Architecture                                                                          Version                                                                                        Repository                                                                                             Size
+===================================================================================================================================================================================================================================================================================================================================================================================================
+Upgrading:
+ corelight-selinux                                                                                noarch                                                                                27.11.1-1.el8                                                                                  corelight_corelightctl                                                                                 21 k
+ corelightctl                                                                                     x86_64                                                                                27.11.1-1                                                                                      corelight_corelightctl                                                                                155 M
+
+Transaction Summary
+===================================================================================================================================================================================================================================================================================================================================================================================================
+Upgrade  2 Packages
+
+Total download size: 155 M
+Is this ok [y/N]: y
+Downloading Packages:
+(1/2): corelight-selinux-27.11.1-1.el8.noarch.rpm                                                                                                                                                                                                                                                                                                                   34 kB/s |  21 kB     00:00    
+(2/2): corelightctl-27.11.1-1.x86_64.rpm                                                                                                                                                                                                                                                                                                                            22 MB/s | 155 MB     00:07    
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                                                                                                                                                                                                               22 MB/s | 155 MB     00:07     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                                                                                                                                                                                                                                                           1/1 
+  Running scriptlet: corelight-selinux-27.11.1-1.el8.noarch                                                                                                                                                                                                                                                                                                                                    1/4 
+  Upgrading        : corelight-selinux-27.11.1-1.el8.noarch                                                                                                                                                                                                                                                                                                                                    1/4 
+  Running scriptlet: corelight-selinux-27.11.1-1.el8.noarch                                                                                                                                                                                                                                                                                                                                    1/4 
+restorecon: lstat(/etc/iscsi) failed: No such file or directory
+
+  Upgrading        : corelightctl-27.11.1-1.x86_64                                                                                                                                                                                                                                                                                                                                             2/4 
+  Cleanup          : corelightctl-27.11.0-1.x86_64                                                                                                                                                                                                                                                                                                                                             3/4 
+  Cleanup          : corelight-selinux-27.11.0-1.el8.noarch                                                                                                                                                                                                                                                                                                                                    4/4 
+  Running scriptlet: corelight-selinux-27.11.0-1.el8.noarch                                                                                                                                                                                                                                                                                                                                    4/4 
+  Running scriptlet: corelight-selinux-27.11.1-1.el8.noarch                                                                                                                                                                                                                                                                                                                                    4/4 
+  Verifying        : corelight-selinux-27.11.1-1.el8.noarch                                                                                                                                                                                                                                                                                                                                    1/4 
+  Verifying        : corelight-selinux-27.11.0-1.el8.noarch                                                                                                                                                                                                                                                                                                                                    2/4 
+  Verifying        : corelightctl-27.11.1-1.x86_64                                                                                                                                                                                                                                                                                                                                             3/4 
+  Verifying        : corelightctl-27.11.0-1.x86_64                                                                                                                                                                                                                                                                                                                                             4/4 
+
+Upgraded:
+  corelight-selinux-27.11.1-1.el8.noarch                                                                                                                                                               corelightctl-27.11.1-1.x86_64                                                                                                                                                              
+
+Complete!
+[ec2-user@ip-10-0-2-124 ~]$ sudo dnf list install corelightctl
+Last metadata expiration check: 0:03:29 ago on Wed 26 Jun 2024 07:37:36 PM UTC.
+Installed Packages
+corelightctl.x86_64                                                                                                                                                                        27.11.1-1                                                                                                                                                                        @corelight_corelightctl
+Available Packages
+corelightctl.x86_64 `
 
 func TestParseFindOutputExact(t *testing.T) {
 	packageInfos := dnf.ParseFindOutput(findOutput, true, nil)
@@ -102,5 +153,12 @@ func TestParsePackageInfoOutput(t *testing.T) {
 
 	if packageInfo.Name != "gzip" {
 		t.Errorf("should have returned gzip name, but got %v", packageInfo.Name)
+	}
+}
+
+func TestParseUpgradeOutput(t *testing.T) {
+	packageInfo := dnf.ParseUpgradedPackageInfoOutput(upgradeOutput, nil)
+	if len(packageInfo) != 2 {
+		t.Errorf("should have returned corelightctl name, but got %v", len(packageInfo))
 	}
 }
