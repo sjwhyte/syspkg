@@ -207,7 +207,7 @@ func (a *PackageManager) ListUpgradable(opts *manager.Options) ([]manager.Packag
 }
 
 // UpgradeAll upgrades all packages using Flatpak with the provided options.
-func (a *PackageManager) UpgradeAll(opts *manager.Options) ([]manager.PackageInfo, error) {
+func (a *PackageManager) UpgradeAll(pkgs []string, opts *manager.Options) ([]manager.PackageInfo, error) {
 	args := []string{"update"}
 	if opts == nil {
 		opts = &manager.Options{

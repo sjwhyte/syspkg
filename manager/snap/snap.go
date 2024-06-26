@@ -238,8 +238,8 @@ func (a *PackageManager) Upgrade(pkgs []string, opts *manager.Options) ([]manage
 }
 
 // UpgradeAll upgrades all upgradable packages using the snap package manager with the provided options.
-func (a *PackageManager) UpgradeAll(opts *manager.Options) ([]manager.PackageInfo, error) {
-	return a.Upgrade(nil, opts)
+func (a *PackageManager) UpgradeAll(pkgs []string, opts *manager.Options) ([]manager.PackageInfo, error) {
+	return a.Upgrade(pkgs, opts)
 }
 
 // GetPackageInfo retrieves information about the specified package using the snap package manager.

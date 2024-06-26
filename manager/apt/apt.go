@@ -242,9 +242,9 @@ func (a *PackageManager) Upgrade(pkgs []string, opts *manager.Options) ([]manage
 }
 
 // UpgradeAll upgrades all installed packages using the apt package manager.
-func (a *PackageManager) UpgradeAll(opts *manager.Options) ([]manager.PackageInfo, error) {
+func (a *PackageManager) UpgradeAll(pkgs []string, opts *manager.Options) ([]manager.PackageInfo, error) {
 	// TODO: add support for upgrade specific packages
-	return a.Upgrade(nil, opts)
+	return a.Upgrade(pkgs, opts)
 }
 
 // Clean cleans the local package cache used by the apt package manager.

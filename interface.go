@@ -25,8 +25,8 @@ type PackageManager interface {
 	// ListUpgradable lists all upgradable packages.
 	ListUpgradable(opts *manager.Options) ([]manager.PackageInfo, error)
 
-	// Upgrade upgrades all packages or only the specified ones.
-	UpgradeAll(opts *manager.Options) ([]manager.PackageInfo, error)
+	// UpgradeAll Upgrade upgrades all packages or only the specified ones.
+	UpgradeAll(pkgs []string, opts *manager.Options) ([]manager.PackageInfo, error)
 
 	// Refresh refreshes the package index.
 	Refresh(opts *manager.Options) error

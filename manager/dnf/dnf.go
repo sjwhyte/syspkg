@@ -58,9 +58,42 @@ func (a *PackageManager) ListUpgradable(opts *manager.Options) ([]manager.Packag
 	panic("implement me")
 }
 
-func (a *PackageManager) UpgradeAll(opts *manager.Options) ([]manager.PackageInfo, error) {
-	//TODO implement me
-	panic("implement me")
+// Upgrade upgrades the provided packages using the apt package manager.
+func (a *PackageManager) Upgrade(pkgs []string, opts *manager.Options) ([]manager.PackageInfo, error) {
+	args := []string{"upgrade"}
+	if len(pkgs) > 0 {
+		args = append(args, pkgs...)
+	}
+
+	if opts == nil {
+		opts = &manager.Options{
+			DryRun:      false,
+			Interactive: false,
+			Verbose:     false,
+		}
+	}
+
+	cmd := exec.Command(pm, args...)
+
+	log.Printf("Running command: %s %s", pm, args)
+
+	if opts.Interactive {
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		cmd.Stdin = os.Stdin
+		err := cmd.Run()
+		return nil, err
+	}
+
+	out, err := cmd.Output()
+	if err != nil {
+		return nil, err
+	}
+	return ParseInstallOutput(string(out), opts), nil
+}
+
+func (a *PackageManager) UpgradeAll(pkgs []string, opts *manager.Options) ([]manager.PackageInfo, error) {
+	return a.Upgrade(pkgs, opts)
 }
 
 func (a *PackageManager) GetPackageInfo(pkg string, opts *manager.Options) (manager.PackageInfo, error) {
