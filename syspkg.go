@@ -19,6 +19,7 @@ package syspkg
 
 import (
 	"errors"
+	"github.com/bluet/syspkg/manager/dnf"
 	"log"
 
 	"github.com/bluet/syspkg/manager"
@@ -76,7 +77,7 @@ func (s *sysPkgImpl) FindPackageManagers(include IncludeOptions) (map[string]Pac
 		{"flatpak", &flatpak.PackageManager{}, include.Flatpak},
 		{"snap", &snap.PackageManager{}, include.Snap},
 		// {"apk", &apk.PackageManager{}, include.Apk},
-		// {"dnf", &dnf.PackageManager{}, include.Dnf},
+		{"dnf", &dnf.PackageManager{}, include.Dnf},
 		// {"zypper", &zypper.PackageManager{}, include.Zypper},
 	}
 

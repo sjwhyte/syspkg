@@ -1,6 +1,6 @@
 module github.com/bluet/syspkg
 
-go 1.21
+go 1.22
 
 require github.com/urfave/cli/v2 v2.26.0 // direct
 
