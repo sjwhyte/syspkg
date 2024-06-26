@@ -8,7 +8,7 @@ import (
 	// "github.com/rs/zerolog"
 	// "github.com/rs/zerolog/log"
 
-	"github.com/bluet/syspkg/manager"
+	"github.com/sjwhyte/syspkg/manager"
 )
 
 // ParseInstallOutput parses the output of the flatpak install command and returns a slice of PackageInfo.

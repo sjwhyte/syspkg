@@ -19,7 +19,7 @@ import (
 	// "github.com/rs/zerolog"
 	// "github.com/rs/zerolog/log"
 
-	"github.com/bluet/syspkg/manager"
+	"github.com/sjwhyte/syspkg/manager"
 )
 
 var pm string = "flatpak"

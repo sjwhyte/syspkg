@@ -4,7 +4,7 @@ package apt_test
 import (
 	"testing"
 
-	"github.com/bluet/syspkg/manager/apt"
+	"github.com/sjwhyte/syspkg/manager/apt"
 )
 
 func TestAptPackageManager(t *testing.T) {

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/bluet/syspkg/manager"
-	"github.com/bluet/syspkg/manager/apt"
+	"github.com/sjwhyte/syspkg/manager"
+	"github.com/sjwhyte/syspkg/manager/apt"
 )
 
 func TestParseInstallOutput(t *testing.T) {

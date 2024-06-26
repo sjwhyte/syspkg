@@ -1,6 +1,6 @@
 package syspkg
 
-import "github.com/bluet/syspkg/manager"
+import "github.com/sjwhyte/syspkg/manager"
 
 // PackageManager is the interface that defines the methods for interacting with various package managers.
 type PackageManager interface {

@@ -64,7 +64,10 @@ func (a *PackageManager) UpgradeAll(opts *manager.Options) ([]manager.PackageInf
 }
 
 func (a *PackageManager) GetPackageInfo(pkg string, opts *manager.Options) (manager.PackageInfo, error) {
-	a.Refresh(nil)
+	err := a.Refresh(nil)
+	if err != nil {
+		return manager.PackageInfo{}, err
+	}
 	cmd := exec.Command("info", pkg)
 
 	out, err := cmd.Output()

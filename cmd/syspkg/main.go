@@ -11,7 +11,7 @@ import (
 	"github.com/urfave/cli/v2"
 
 	"github.com/bluet/syspkg"
-	"github.com/bluet/syspkg/manager"
+	"github.com/sjwhyte/syspkg/manager"
 )
 
 // main function initializes syspkg and sets up the CLI application.
