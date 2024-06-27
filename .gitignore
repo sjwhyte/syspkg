@@ -51,3 +51,6 @@ go.work
 bin/
 tmp/
 **/*.log
+
+# Jetbrains
+.idea
