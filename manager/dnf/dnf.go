@@ -30,7 +30,7 @@ func (a *PackageManager) IsAvailable() bool {
 }
 
 func (a *PackageManager) Find(keywords []string, opts *manager.Options) ([]manager.PackageInfo, error) {
-	args := append([]string{"search"}, ArgsShowDuplicates)
+	args := append([]string{"search"}, opts.CustomCommandArgs...)
 	args = append(args, keywords...)
 
 	cmd := exec.Command("dnf", args...)
