@@ -53,4 +53,5 @@ tmp/
 **/*.log
 
 # Jetbrains
-.idea/*
+.idea
+
